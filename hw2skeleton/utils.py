@@ -35,6 +35,7 @@ class ActiveSite:
     def __init__(self, name):
         self.name = name
         self.residues = []
+        self.newresidues = []
 
     # Overload the __repr__ operator to make printing simpler.
     def __repr__(self):

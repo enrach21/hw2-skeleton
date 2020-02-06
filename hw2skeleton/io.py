@@ -1,6 +1,7 @@
 import glob
 import os
 from .utils import Atom, Residue, ActiveSite
+import pandas as pd
 
 
 def read_active_sites(dir):
@@ -107,3 +108,55 @@ def write_mult_clusterings(filename, clusterings):
                 out.write("%s\n" % clusters[j][k])
 
     out.close()
+
+def make_matrix(sizex, sizey):
+    """Creates a sizex by sizey matrix filled with zeros.
+    """
+    test = [[0]*sizey for i in  range(sizex)]
+    return test
+
+# class ScoreParam:
+    """The parameters for an alignment scoring function"""
+    # def __init__(self, gap, match, mismatch):
+        # self.gap = gap
+        # self.match = match
+        # self.mismatch = mismatch
+
+# Make a dictionary for the various combination of amino acid changes
+AminoAcid = ['ALA', 'ARG', 'ASN', 'ASP', 'CYS', 'GLN', 'GLU', 'GLY', 'HIS', 'ILE', 'LEU', 'LYS', 'MET', 'PHE','PRO', 'SER', 'THR', 'TRP','TYR','VAL','ASX','XLE', 'GLX','XAA', '*']
+data = pd.read_table('/Users/ijones1/Documents/hw2-skeleton/BLOSUM80.txt', sep=" ", header = None, names = AminoAcid)
+data = data.set_index([pd.Index(AminoAcid)])
+print(data)
+Dict = {}
+for i in AminoAcid:
+    for j in AminoAcid:
+        Dict[(i,j)]=data[i][j]
+
+def local_align(x, y):
+    """
+    Write a series of clusterings of ActiveSite instances out to a file.
+
+    Input: a filename and a list of clusterings of ActiveSite instances
+    Output: none
+    """
+
+    A = make_matrix(len(x) + 1, len(y) + 1)
+    best = 0
+    optloc = (0,0)
+    # fill in A in the right order
+    for i in range(1, len(x)):
+        for j in range(1, len(y)):
+            # the local alignment recurrance rule:
+            A[i][j] = max(
+                A[i][j-1] + Dict[(x[i],'*')],
+                A[i-1][j] + Dict[('*',y[j])],
+                A[i-1][j-1] + Dict[(x[i],y[j])],
+                0
+            )
+            # track the cell with the largest score
+            if A[i][j] >= best:
+                best = A[i][j]
+                optloc = (i,j)
+    # return the opt score and the best location
+    return best, optloc
+
