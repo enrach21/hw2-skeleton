@@ -3,14 +3,18 @@ from hw2skeleton import io
 import os
 
 def test_minval():
-    matrix=[[1 2 3][4 5 7][7 8 10]]
+    matrix=[[1, 2, 3],[4, 5, 7],[7, 8, 10]]
     distance_matrix = [[0]*len(matrix) for i in  range(len(matrix))]
     for i in range(len(matrix)):
         for j in range(len(matrix)):
             distance_matrix[i][j] = Euclidean_distance(matrix[i],matrix[j])
-    colunn= 1
+    column=0
+    visited=[0]
+    assert((cluster.min_val(dist, column, visited))==(5.830951894845301, 0, 1))
+    column=1
     visited=[]
-    assert((cluster.min_val(dist, column, visited))==)
+    assert((cluster.min_val(dist, column, visited))==(0, 1, 1))
+    
 def test_get_order_residues():
     filename_a = os.path.join("data", "46495.pdb")
     activesite_a = io.read_active_site(filename_a)
