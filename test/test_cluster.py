@@ -32,9 +32,9 @@ def test_minval():
 def test_get_order_residues():
     filename_a = os.path.join("data", "46495.pdb")
     activesite_a = io.read_active_site(filename_a)
-    assert (activesite_a.newresidues) == []
+    assert np.array_equal((activesite_a.newresidues),[])
     cluster.get_order_residues([activesite_a])
-    assert (activesite_a.newresidues) == ['ASP', 'LYS', 'SER', 'ARG', 'ASP', 'ASP', 'ASP']
+    assert np.array_equal((activesite_a.newresidues),['ASP', 'LYS', 'SER', 'ARG', 'ASP', 'ASP', 'ASP'])
 
 
 def test_similarity():
