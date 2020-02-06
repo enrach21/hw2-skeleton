@@ -3,6 +3,7 @@ from hw2skeleton import io
 import pandas as pd
 import os
 import glob
+import numpy as np
 
 
 # Make a dictionary for the various combination of amino acid changes
