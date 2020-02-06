@@ -115,16 +115,12 @@ def make_matrix(sizex, sizey):
     test = [[0]*sizey for i in  range(sizex)]
     return test
 
-# class ScoreParam:
-    """The parameters for an alignment scoring function"""
-    # def __init__(self, gap, match, mismatch):
-        # self.gap = gap
-        # self.match = match
-        # self.mismatch = mismatch
-
 # Make a dictionary for the various combination of amino acid changes
 AminoAcid = ['ALA', 'ARG', 'ASN', 'ASP', 'CYS', 'GLN', 'GLU', 'GLY', 'HIS', 'ILE', 'LEU', 'LYS', 'MET', 'PHE','PRO', 'SER', 'THR', 'TRP','TYR','VAL','ASX','XLE', 'GLX','XAA', '*']
-data = pd.read_table('/Users/ijones1/Documents/hw2-skeleton/BLOSUM80.txt', sep=" ", header = None, names = AminoAcid)
+BLOSUM = glob.glob('BLOSUM80.txt')
+print("this is BLOSUM...")
+print(BLOSUM[0])
+data = pd.read_table(BLOSUM[0], sep=" ", header = None, names = AminoAcid)
 data = data.set_index([pd.Index(AminoAcid)])
 print(data)
 Dict = {}
