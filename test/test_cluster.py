@@ -24,16 +24,16 @@ def test_minval():
             distance_matrix[i][j] = cluster.Euclidean_distance(matrix[i],matrix[j])
     column=0
     visited=[0]
-    assert((cluster.min_val(distance_matrix, column, visited))==(5.830951894845301, 0, 1))
+    assert ((cluster.min_val(distance_matrix, column, visited)) ==(5.830951894845301, 0, 1))
     column=1
     visited=[]
-    assert((cluster.min_val(distance_matrix, column, visited))==(0, 1, 1))
+    assert ((cluster.min_val(distance_matrix, column, visited)) ==(0, 1, 1))
 
 def test_get_order_residues():
     filename_a = os.path.join("data", "46495.pdb")
     activesite_a = io.read_active_site(filename_a)
     assert (activesite_a.newresidues) == []
-    cluster.get_order_residues(activesite_a[0])
+    cluster.get_order_residues([activesite_a])
     assert (activesite_a.newresidues) == ['ASP' 'LYS' 'SER' 'ARG' 'ASP' 'ASP' 'ASP']
 
 
@@ -45,7 +45,7 @@ def test_similarity():
     activesite_b = io.read_active_site(filename_b)
 
     # update this assertion
-    assert cluster.compute_similarity(activesite_a, activesite_b) == 13
+    assert (cluster.compute_similarity(activesite_a, activesite_b)) == 13
 
 def test_partition_clustering():
     # tractable subset
