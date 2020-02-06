@@ -2,6 +2,17 @@ from hw2skeleton import cluster
 from hw2skeleton import io
 import os
 
+
+# Make a dictionary for the various combination of amino acid changes
+AminoAcid = ['ALA', 'ARG', 'ASN', 'ASP', 'CYS', 'GLN', 'GLU', 'GLY', 'HIS', 'ILE', 'LEU', 'LYS', 'MET', 'PHE','PRO', 'SER', 'THR', 'TRP','TYR','VAL','ASX','XLE', 'GLX','XAA', '*']
+data = pd.read_table('/Users/ijones1/Documents/hw2-skeleton/BLOSUM80.txt', sep=" ", header = None, names = AminoAcid)
+data = data.set_index([pd.Index(AminoAcid)])
+print(data)
+Dict = {}
+for i in AminoAcid:
+    for j in AminoAcid:
+        Dict[(i,j)]=data[i][j]
+
 def test_minval():
     matrix=[[1, 2, 3],[4, 5, 7],[7, 8, 10]]
     distance_matrix = [[0]*len(matrix) for i in  range(len(matrix))]
@@ -14,7 +25,7 @@ def test_minval():
     column=1
     visited=[]
     assert((cluster.min_val(dist, column, visited))==(0, 1, 1))
-    
+
 def test_get_order_residues():
     filename_a = os.path.join("data", "46495.pdb")
     activesite_a = io.read_active_site(filename_a)

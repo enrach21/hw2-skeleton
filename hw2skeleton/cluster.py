@@ -41,9 +41,9 @@ def get_order_residues(active_sites):
                 Dim3 = np.append(Dim3, a.coords[2])
             res_mean += [list([np.mean(Dim1), np.mean(Dim2), np.mean(Dim3)])]
             res = np.append(res, residue.type)
-        # print(res)
+        print(res)
         res_list = reorder(res_mean, res)
-        # print(res_list)
+        print(res_list)
         active.newresidues = (res_list)
     return
 

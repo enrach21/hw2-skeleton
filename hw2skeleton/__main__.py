@@ -9,7 +9,7 @@ if len(sys.argv) < 4:
     sys.exit(0)
 
 active_sites = read_active_sites(sys.argv[2])
-get_order_residues(active_sites)
+get_order_residues(active_sites[0:2])
 # print one active site
 print(active_sites[0].name)
 
@@ -22,7 +22,7 @@ print((active_sites[4].newresidues, active_sites[5].newresidues))
 
 print('testing scoring matrix')
 
-# print(compute_similarity(active_sites[0], active_sites[1]))
+print(compute_similarity(active_sites[0], active_sites[1]))
 
 
 # Test clustering 1,2,3
@@ -31,8 +31,8 @@ print('testing scoring matrix')
 # Choose clustering algorithm
 if sys.argv[1][0:2] == '-P':
     print("Clustering using Partitioning method")
-    clustering = cluster_by_partitioning(active_sites)
-    write_clustering(sys.argv[3], clustering)
+    # clustering = cluster_by_partitioning(active_sites)
+    # write_clustering(sys.argv[3], clustering)
 
 if sys.argv[1][0:2] == '-H':
     print("Clustering using hierarchical method")
