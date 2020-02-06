@@ -8,6 +8,7 @@ if len(sys.argv) < 4:
     print("Usage: python -m hw2skeleton [-P| -H] <pdb directory> <output file>")
     sys.exit(0)
 
+print(sys.argv)
 active_sites = read_active_sites(sys.argv[2])
 get_order_residues(active_sites[0:2])
 # print one active site

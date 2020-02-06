@@ -1,11 +1,12 @@
 from hw2skeleton import cluster
 from hw2skeleton import io
+import pandas as pd
 import os
 
 
 # Make a dictionary for the various combination of amino acid changes
 AminoAcid = ['ALA', 'ARG', 'ASN', 'ASP', 'CYS', 'GLN', 'GLU', 'GLY', 'HIS', 'ILE', 'LEU', 'LYS', 'MET', 'PHE','PRO', 'SER', 'THR', 'TRP','TYR','VAL','ASX','XLE', 'GLX','XAA', '*']
-data = pd.read_table('/Users/ijones1/Documents/hw2-skeleton/BLOSUM80.txt', sep=" ", header = None, names = AminoAcid)
+data = pd.read_table('BLOSUM80.txt', sep=" ", header = None, names = AminoAcid)
 data = data.set_index([pd.Index(AminoAcid)])
 print(data)
 Dict = {}
@@ -18,19 +19,19 @@ def test_minval():
     distance_matrix = [[0]*len(matrix) for i in  range(len(matrix))]
     for i in range(len(matrix)):
         for j in range(len(matrix)):
-            distance_matrix[i][j] = Euclidean_distance(matrix[i],matrix[j])
+            distance_matrix[i][j] = cluster.Euclidean_distance(matrix[i],matrix[j])
     column=0
     visited=[0]
-    assert((cluster.min_val(dist, column, visited))==(5.830951894845301, 0, 1))
+    assert((cluster.min_val(distance_matrix, column, visited))==(5.830951894845301, 0, 1))
     column=1
     visited=[]
-    assert((cluster.min_val(dist, column, visited))==(0, 1, 1))
+    assert((cluster.min_val(distance_matrix, column, visited))==(0, 1, 1))
 
 def test_get_order_residues():
     filename_a = os.path.join("data", "46495.pdb")
     activesite_a = io.read_active_site(filename_a)
     assert (activesite_a.newresidues) == []
-    cluster.get_order_residues(activesite_a)
+    cluster.get_order_residues(activesite_a[0])
     assert (activesite_a.newresidues) == ['ASP' 'LYS' 'SER' 'ARG' 'ASP' 'ASP' 'ASP']
 
 
