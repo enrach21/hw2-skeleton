@@ -145,12 +145,10 @@ def compute_similarity(site_a, site_b):
 
 def Euclidean_distance(x,y):
     """
-    Cluster a given set of ActiveSite instances using a partitioning method.
+    Given too vectors calculate the euclidean distance between them
 
-    Input: a list of ActiveSite instances
-    Output: a clustering of ActiveSite instances
-            (this is really a list of clusters, each of which is list of
-            ActiveSite instances)
+    Input: Two Vectors
+    Output: Distance
     """
     D = math.sqrt(sum([(a-b) ** 2 for a, b in zip(x, y)]))
     return D

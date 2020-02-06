@@ -34,7 +34,7 @@ def test_get_order_residues():
     activesite_a = io.read_active_site(filename_a)
     assert (activesite_a.newresidues) == []
     cluster.get_order_residues([activesite_a])
-    assert (activesite_a.newresidues) == ['ASP' 'LYS' 'SER' 'ARG' 'ASP' 'ASP' 'ASP']
+    assert (activesite_a.newresidues) == ['ASP', 'LYS', 'SER', 'ARG', 'ASP', 'ASP', 'ASP']
 
 
 def test_similarity():
@@ -44,6 +44,8 @@ def test_similarity():
     activesite_a = io.read_active_site(filename_a)
     activesite_b = io.read_active_site(filename_b)
 
+    cluster.get_order_residues([activesite_a])
+    cluster.get_order_residues([activesite_b])
     # update this assertion
     assert (cluster.compute_similarity(activesite_a, activesite_b)) == 13
 
