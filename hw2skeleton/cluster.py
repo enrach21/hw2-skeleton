@@ -443,6 +443,18 @@ def find_optimal_score_P(active_sites):
     print(k_opt)
     return k_opt
 
+def find_optimal_score_H(active_sites):
+    m=0 #max
+    k_opt=0 #optimal clustering
+    for k in range(2,4):
+        S = Silhouette(cluster_hierarchically(active_sites, k)[1])
+        print(S)
+        if m < S:
+            m=S
+            k_opt=k
+    print(k_opt)
+    return k_opt
+
 def jaccard_index(list1,list2):
     # Compare how well two clustering algs performed
 
