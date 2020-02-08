@@ -11,23 +11,6 @@ if len(sys.argv) < 4:
 print(sys.argv)
 active_sites = read_active_sites(sys.argv[2])
 get_order_residues(active_sites)
-# print one active site
-# print(active_sites[0].name)
-
-# Get residues of the active site
-# Print out the first residue type of the first active site
-# print((active_sites[4].residues, active_sites[5].residues))
-# print((active_sites[4].newresidues, active_sites[5].newresidues))
-
-
-# print('testing scoring matrix')
-
-# print(compute_similarity(active_sites[0], active_sites[1]))
-
-
-
-# Test clustering 1,2,3
-# cluster_by_partitioning([active_sites[0], active_sites[1], active_sites[2]])
 
 # Choose clustering algorithm
 if sys.argv[1][0:2] == '-P':
@@ -39,9 +22,4 @@ if sys.argv[1][0:2] == '-H':
     print("Clustering using hierarchical method")
     clusterings = cluster_hierarchically(active_sites, 2)
     write_mult_clusterings(sys.argv[3], clusterings[0])
-
-# Silhouette(cluster_by_partitioning(active_sites, 2)[1])
-# find_optimal_score_P(active_sites)
-
-jaccard_index(cluster_by_partitioning(active_sites, 2)[0],cluster_hierarchically(active_sites, 2)[0])
 

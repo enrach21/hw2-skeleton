@@ -14,6 +14,7 @@ Skeleton for clustering project.
 
 
 ## structure
+All of the clustering functions I use are in cluster.py except for local allignment which is locating in io.py.
 
 The main file that you will need to modify is `cluster.py` and the corresponding `test_cluster.py`. `utils.py` contains helpful classes that you can use to represent Active Sites. `io.py` contains some reading and writing files for interacting with PDB files and writing out cluster info.
 
