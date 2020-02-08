@@ -81,6 +81,7 @@ def test_partition_clustering():
     # update this assertion
     assert len(cluster.cluster_by_partitioning(active_sites,2)[0]) == 2
     assert len(cluster.cluster_by_partitioning(active_sites,3)[0]) == 3
+    assert len(cluster.cluster_by_partitioning(active_sites,3)[0]) == 4
 
 def test_hierarchical_clustering():
     # tractable subset
@@ -96,6 +97,7 @@ def test_hierarchical_clustering():
     # update this assertion
     assert len(cluster.cluster_hierarchically(active_sites,2)[0]) == 2
     assert len(cluster.cluster_hierarchically(active_sites,3)[0]) == 3
+    assert len(cluster.cluster_hierarchically(active_sites,3)[0]) == 4
 
 
 
