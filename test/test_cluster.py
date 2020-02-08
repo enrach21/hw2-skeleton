@@ -38,6 +38,7 @@ def test_get_order_residues():
     assert np.array_equal((activesite_a.newresidues),['ASP', 'LYS', 'SER', 'ARG', 'ASP', 'ASP', 'ASP'])
 
 
+
 def test_similarity():
     filename_a = os.path.join("data", "46495.pdb")
     filename_b = os.path.join("data", "23812.pdb")
@@ -50,9 +51,29 @@ def test_similarity():
     # update this assertion
     assert (cluster.compute_similarity(activesite_a, activesite_b)) == 13
 
+def test_dist():
+    filename_a = os.path.join("data", "46495.pdb")
+    filename_b = os.path.join("data", "23812.pdb")
+
+    activesite_a = io.read_active_site(filename_a)
+    activesite_b = io.read_active_site(filename_b)
+
+    cluster.get_order_residues([activesite_a])
+    cluster.get_order_residues([activesite_b])
+    sim1=cluster.compute_similarity(activesite_a, activesite_a)
+    sim2=cluster.compute_similarity(activesite_a, activesite_a)
+    sim3=cluster.compute_similarity(activesite_a, activesite_b)
+    sim4=cluster.compute_similarity(activesite_b, activesite_a)
+    assert cluster.Euclidean_distance(sim1, sim2) == 0
+    assert cluster.Euclidean_distance(sim3, sim4)== cluster.Euclidean_distance(sim4, sim3)
+    assert cluster.Euclidean_distance(sim3, sim4) > 0
+
+
+
 def test_partition_clustering():
     # tractable subset
-    pdb_ids = [276, 4629, 10701]
+    pdb_ids = [276, 4629, 10701, 10701,10814,13052,14181,15813]
+
 
     active_sites = []
     for id in pdb_ids:
@@ -60,11 +81,11 @@ def test_partition_clustering():
         active_sites.append(io.read_active_site(filepath))
 
     # update this assertion
-    assert cluster.cluster_by_partitioning(active_sites) == []
+    assert len(cluster.cluster_by_partitioning(active_sites,2)[0]) == 2
 
 def test_hierarchical_clustering():
     # tractable subset
-    pdb_ids = [276, 4629, 10701]
+    pdb_ids = [276, 4629, 10701, 10701,10814,13052,14181,15813]
 
     active_sites = []
     for id in pdb_ids:
@@ -72,4 +93,8 @@ def test_hierarchical_clustering():
         active_sites.append(io.read_active_site(filepath))
 
     # update this assertion
-    assert cluster.cluster_hierarchically(active_sites) == []
+    assert len(cluster.cluster_hierarchically(active_sites,2)[0] == 2
+
+
+
+
