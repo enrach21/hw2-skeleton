@@ -459,9 +459,12 @@ def jaccard_index(list1,list2):
     # Compare how well two clustering algs performed
 
     for i in range(len(list1)):
-        for j in lrange(len(list1)):
+        print(i)
+        for j in range(len(list1)):
             comembership1 = list1[i] == list1[j]
+            print(comembership1)
             comembership2 = list2[i] == list2[j]
+            print(comembership2)
     return
 
 

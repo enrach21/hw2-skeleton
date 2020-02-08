@@ -1,6 +1,6 @@
 import sys
 from .io import read_active_sites, write_clustering, write_mult_clusterings
-from .cluster import cluster_by_partitioning, cluster_hierarchically, compute_similarity, get_order_residues, Silhouette, find_optimal_score_P
+from .cluster import cluster_by_partitioning, cluster_hierarchically, compute_similarity, get_order_residues, Silhouette, find_optimal_score_P, jaccard_index
 import numpy as np
 
 # Some quick stuff to make sure the program is called correctly
@@ -32,8 +32,8 @@ get_order_residues(active_sites)
 # Choose clustering algorithm
 if sys.argv[1][0:2] == '-P':
     print("Clustering using Partitioning method")
-    clustering = cluster_by_partitioning(active_sites, 2)
-    write_clustering(sys.argv[3], clustering[0])
+    # clustering = cluster_by_partitioning(active_sites, 2)
+    # write_clustering(sys.argv[3], clustering[0])
 
 if sys.argv[1][0:2] == '-H':
     print("Clustering using hierarchical method")
@@ -42,4 +42,6 @@ if sys.argv[1][0:2] == '-H':
 
 # Silhouette(cluster_by_partitioning(active_sites, 2)[1])
 # find_optimal_score_P(active_sites)
+
+jaccard_index(cluster_by_partitioning(active_sites, 2)[0],cluster_hierarchically(active_sites, 2)[0])
 
