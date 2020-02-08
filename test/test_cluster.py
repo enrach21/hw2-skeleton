@@ -93,7 +93,7 @@ def test_hierarchical_clustering():
         active_sites.append(io.read_active_site(filepath))
 
     # update this assertion
-    assert len(cluster.cluster_hierarchically(active_sites,2)[0] == 2
+    assert len(cluster.cluster_hierarchically(active_sites,2)[0]) == 2
 
 
 
