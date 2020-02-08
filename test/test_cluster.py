@@ -77,6 +77,7 @@ def test_partition_clustering():
         filepath = os.path.join("data", "%i.pdb"%id)
         active_sites.append(io.read_active_site(filepath))
 
+    cluster.get_order_residues(active_sites)
     # update this assertion
     assert len(cluster.cluster_by_partitioning(active_sites,2)[0]) == 2
 
@@ -88,6 +89,8 @@ def test_hierarchical_clustering():
     for id in pdb_ids:
         filepath = os.path.join("data", "%i.pdb"%id)
         active_sites.append(io.read_active_site(filepath))
+
+    cluster.get_order_residues(active_sites)
 
     # update this assertion
     assert len(cluster.cluster_hierarchically(active_sites,2)[0]) == 2
