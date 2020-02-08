@@ -58,15 +58,12 @@ def test_dist():
     activesite_a = io.read_active_site(filename_a)
     activesite_b = io.read_active_site(filename_b)
 
-    cluster.get_order_residues([activesite_a])
-    cluster.get_order_residues([activesite_b])
-    sim1=cluster.compute_similarity(activesite_a, activesite_a)
-    sim2=cluster.compute_similarity(activesite_a, activesite_a)
-    sim3=cluster.compute_similarity(activesite_a, activesite_b)
-    sim4=cluster.compute_similarity(activesite_b, activesite_a)
-    assert cluster.Euclidean_distance(sim1, sim2) == 0
-    assert cluster.Euclidean_distance(sim3, sim4)== cluster.Euclidean_distance(sim4, sim3)
-    assert cluster.Euclidean_distance(sim3, sim4) > 0
+    vector1=[0,1,4,3,9]
+    vector2=[5,4,3,2,1]
+
+    assert cluster.Euclidean_distance(vector1, vector1) == 0 # Distance to itself is zero
+    assert cluster.Euclidean_distance(vector1, vector2)== cluster.Euclidean_distance(vector2, vector1) # distance from a to b is same to b to a
+    assert cluster.Euclidean_distance(vector1, vector2) > 0 # distance is always greater than zero
 
 
 

@@ -12,18 +12,17 @@ print(sys.argv)
 active_sites = read_active_sites(sys.argv[2])
 get_order_residues(active_sites)
 # print one active site
-print(active_sites[0].name)
+# print(active_sites[0].name)
 
 # Get residues of the active site
-print(active_sites[0].residues)
 # Print out the first residue type of the first active site
-print((active_sites[4].residues, active_sites[5].residues))
-print((active_sites[4].newresidues, active_sites[5].newresidues))
+# print((active_sites[4].residues, active_sites[5].residues))
+# print((active_sites[4].newresidues, active_sites[5].newresidues))
 
 
-print('testing scoring matrix')
+# print('testing scoring matrix')
 
-print(compute_similarity(active_sites[0], active_sites[1]))
+# print(compute_similarity(active_sites[0], active_sites[1]))
 
 
 
@@ -33,14 +32,14 @@ print(compute_similarity(active_sites[0], active_sites[1]))
 # Choose clustering algorithm
 if sys.argv[1][0:2] == '-P':
     print("Clustering using Partitioning method")
-    # clustering = cluster_by_partitioning(active_sites, 2)
-    # write_clustering(sys.argv[3], clustering[0])
+    clustering = cluster_by_partitioning(active_sites, 2)
+    write_clustering(sys.argv[3], clustering[0])
 
 if sys.argv[1][0:2] == '-H':
     print("Clustering using hierarchical method")
     clusterings = cluster_hierarchically(active_sites, 2)
     write_mult_clusterings(sys.argv[3], clusterings[0])
 
-Silhouette(cluster_by_partitioning(active_sites, 2)[1])
-find_optimal_score_P(active_sites)
+# Silhouette(cluster_by_partitioning(active_sites, 2)[1])
+# find_optimal_score_P(active_sites)
 

@@ -280,7 +280,7 @@ def cluster_hierarchically(active_sites, k):
             (each clustering is a list of lists of Sequence objects)
     """
 
-    active_sites = active_sites[0:10]
+    # active_sites = active_sites[0:10]
 
     # Obtain similarity scores
     score_matrix = [[0]*len(active_sites) for i in  range(len(active_sites))]
@@ -393,7 +393,6 @@ def Test_Silhouette_partitioning(active_sites):
     for group in cluster:
         df[df['Active'] == group]['score']
 
-    # for x in k:
 
 
 
